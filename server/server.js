@@ -66,6 +66,7 @@ const userSchema = new mongoose.Schema({
     wishList: Array,
     cartList: Array,
     googleId: String,
+    displayName: String
 });
 
 userSchema.plugin(passportLocalMongoose);
@@ -88,13 +89,15 @@ passport.deserializeUser(function (id, done) {
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
-    callbackURL: "/auth/google/VardasDolls", // Update this URL to your server's callback URL
+    callbackURL: "/auth/google/VardasDolls",
+    scope: ['profile', 'email']
 },
     function (accessToken, refreshToken, profile, cb) {
         console.log(profile);
-        User.findOrCreate({ googleId: profile.id }, function (err, user) {
+        User.findOrCreate({ googleId: profile.id, displayName: profile.displayName }, function (err, user) {
             return cb(err, user);
         });
+
     }
 ));
 
@@ -545,8 +548,24 @@ app.post("/api/register", function (req, res) {
 
 })
 
+app.get("/api/get-user-data", (req, res) => {
+    if (req.isAuthenticated()) {
+        User.findById(req.user.id)
+            .then((foundUser) => {
+                console.log(foundUser);
+                res.send(foundUser);
+
+            }).catch((err) => {
+                console.log(err);
+                console.log('error finding user):');
+                res.redirect("http://localhost:3000/");
+            });
+    } else {
+        res.send("false");
+    }
+});
 app.get("/auth/google", passport.authenticate('google', {
-    scope: ['profile']
+    scope: ['profile', 'email']
 }));
 
 
