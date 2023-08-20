@@ -57,7 +57,7 @@ app.use(
         methods: 'GET,POST,PUT,DELETE',
         credentials: true, // Allow credentials (cookies, authorization headers, etc.)
     })
-);  ``awsq3w2w2sqe3wse433w232a  q```2w
+);
 
 mongoose.connect("mongodb+srv://noamtamari98:noam8deshalit@cluster0.mwumbab.mongodb.net/dollUsersDB");
 
