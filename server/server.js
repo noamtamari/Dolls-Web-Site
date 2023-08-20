@@ -21,7 +21,9 @@ app.set("view engine", "ejs"); //use EJS as its view engine
 app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static("public"));
+// app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "client")));
+
 app.use(cookieParser());
 
 // app.options('*', function (req, res, next) {
@@ -121,9 +123,13 @@ app.get("/api", (req, res) => {
     res.json({ "users": ["userOne", "UserTwo"] })
 })
 
-app.get("/", (req, res) => {
-    res.sendFile(__dirname + "/index.html");
-})
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "client", "index.html"));
+});
+
+// app.get("/", (req, res) => {
+//     res.sendFile(__dirname + "/index.html");
+// })
 
 app.get('/api/set-wishList', (req, res) => {
     const selectedDoll = req.query.doll;
@@ -578,6 +584,7 @@ app.get("/auth/google/VardasDolls",
     });
 
 app.post("/", (req, res) => {
-    res.sendFile(__dirname + "/index.html");
+    // res.sendFile(__dirname + "/index.html");
+    res.sendFile(path.join(__dirname, "client", "index.html"));
 })
 app.listen(5000, () => { console.log("server started on port 5000") })
