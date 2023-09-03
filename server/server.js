@@ -21,8 +21,8 @@ app.set("view engine", "ejs"); //use EJS as its view engine
 app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
-// app.use(express.static("public"));
-app.use(express.static(path.join(__dirname, "../client/build")));
+app.use(express.static(__dirname + "/public"));
+// app.use(express.static(path.join(__dirname, "../client/build")));
 
 app.use(cookieParser());
 
@@ -55,7 +55,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(
     cors({
-        origin: "http://localhost:3000", // Adjust this according to your React client URL
+        origin: "http://localhost:5000", // Adjust this according to your React client URL
         methods: 'GET,POST,PUT,DELETE',
         credentials: true, // Allow credentials (cookies, authorization headers, etc.)
     })
@@ -123,9 +123,12 @@ app.get("/api", (req, res) => {
     res.json({ "users": ["userOne", "UserTwo"] })
 })
 
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client/build", "index.html"));
-});
+
+
+
+//   app.get("/", (req, res) => {
+//     res.sendFile(path.join(__dirname, "/public/index.html"));
+// });
 
 // app.get("/", (req, res) => {
 //     res.sendFile(__dirname + "/index.html");
@@ -498,7 +501,7 @@ app.post("/api/login", (req, res) => {
                         wishList: foundUser.wishList,
                     };
                     // res.send(JSON.stringify(userData));
-                    res.redirect("http://localhost:3000/");
+                    res.redirect("http://localhost:5000/");
                 })
             }).catch(err => {
                 console.log("user not found");
@@ -513,7 +516,7 @@ app.post("/api/log-out", (req, res) => {
             console.log("logout error " + err);
         }
         // res.send('logged-out');
-        res.redirect("http://localhost:3000/");
+        res.redirect("http://localhost:5000/");
     });
 });
 
@@ -526,7 +529,7 @@ app.post("/api/register", function (req, res) {
             };
             passport.authenticate("local")(req, res, function () {
                 res.send(JSON.stringify(userData));
-                res.redirect("http://localhost:3000/");
+                res.redirect("http://localhost:5000/");
             })
         })
     } else {
@@ -545,7 +548,7 @@ app.post("/api/register", function (req, res) {
                         wishList: []
                     };
                     res.send(JSON.stringify(userData));
-                    res.redirect("http://localhost:3000/");
+                    res.redirect("http://localhost:5000/");
                 })
             }
         })
@@ -564,7 +567,7 @@ app.get("/api/get-user-data", (req, res) => {
             }).catch((err) => {
                 console.log(err);
                 console.log('error finding user):');
-                res.redirect("http://localhost:3000/");
+                res.redirect("http://localhost:5000/");
             });
     } else {
         res.send("false");
@@ -580,11 +583,15 @@ app.get("/auth/google/VardasDolls",
     passport.authenticate('google', { failureRedirect: "/", failureMessage: true }),
     function (req, res) {
         // Successful authentication, redirect to the homepage or a success page.
-        res.redirect("http://localhost:3000/");
+        res.redirect("http://localhost:5000/");
     });
 
 app.post("/", (req, res) => {
     // res.sendFile(__dirname + "/index.html");
-    res.sendFile(path.join(__dirname, "../client/build", "index.html"));
+    res.sendFile(path.join(__dirname, "index.html"));
 })
-app.listen(5000, () => { console.log("server started on port 5000") })
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, "/public/index.html"));
+  });
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => { console.log("server started on port 5000") })
