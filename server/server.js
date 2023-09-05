@@ -583,7 +583,7 @@ app.get("/auth/google/VardasDolls",
     passport.authenticate('google', { failureRedirect: "/", failureMessage: true }),
     function (req, res) {
         // Successful authentication, redirect to the homepage or a success page.
-        res.redirect("http://localhost:5000/");
+        res.redirect("https://varda-dolls.onrender.com/");
     });
 
 app.post("/", (req, res) => {
