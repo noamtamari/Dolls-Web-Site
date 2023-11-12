@@ -12,9 +12,17 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const findOrCreate = require('mongoose-findorcreate');
 var cors = require('cors');
 const { v4: uuidv4 } = require('uuid');
+const stripe = require("stripe")('sk_test_51O9QSFCM6LfZFndAWwPImLpKNBnoX77EulStkgBxtK8BSpM2EhPBI4QClBwLeoiae57GsRuUHDuJvZTiPxUdR0xn00WXrdMhPV');
+
+
+const checkOutRoute = require('./checkOutRoute');
+const ordersRoute = require('./ordersRoute');
+// const paymentRoute = require('./paymentRoute');
+
 
 
 const app = express();
+
 
 
 app.set("view engine", "ejs"); //use EJS as its view engine
@@ -55,6 +63,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(
     cors({
+        // origin: "http://localhost:3000", // Adjust this according to your React client URL
         origin: "https://varda-dolls.onrender.com", // Adjust this according to your React client URL
         methods: 'GET,POST,PUT,DELETE',
         credentials: true, // Allow credentials (cookies, authorization headers, etc.)
@@ -63,18 +72,8 @@ app.use(
 
 mongoose.connect("mongodb+srv://noamtamari98:noam8deshalit@cluster0.mwumbab.mongodb.net/dollUsersDB");
 
-const userSchema = new mongoose.Schema({
-    password: String,
-    wishList: Array,
-    cartList: Array,
-    googleId: String,
-    displayName: String
-});
+const User = require('./userModel'); // Import the User model
 
-userSchema.plugin(passportLocalMongoose);
-userSchema.plugin(findOrCreate);
-
-const User = new mongoose.model("User", userSchema);
 
 passport.use(User.createStrategy());
 
@@ -91,11 +90,12 @@ passport.deserializeUser(function (id, done) {
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
+    // callbackURL: "/auth/google/VardasDolls",
     callbackURL: "https://varda-dolls.onrender.com/auth/google/VardasDolls",
     scope: ['profile', 'email']
 },
     function (accessToken, refreshToken, profile, cb) {
-        console.log(profile);
+        // console.log(profile);
         User.findOrCreate({ googleId: profile.id, displayName: profile.displayName }, function (err, user) {
             return cb(err, user);
         });
@@ -111,23 +111,46 @@ const guestSchema = new mongoose.Schema({
 
 const Guest = new mongoose.model("Guest", guestSchema);
 
-// const logSessionData = (req, res, next) => {
-//     console.log('Session data:', req.session);
-//     next();
-// };
 
-// // Add the logSessionData middleware before your route handlers
-// app.use(logSessionData);
+app.use('/', checkOutRoute);
+app.use('/', ordersRoute);
+// app.use('/create-payment-intent', paymentRoute);
+
+
+const calculateOrderAmount = (items) => {
+    // Replace this constant with a calculation of the order's amount
+    // Calculate the order total on the server to prevent
+    // people from directly manipulating the amount on the client
+    return 1400;
+};
+app.post("/create-payment-intent", async (req, res) => {
+    const { items, formData, cartProducts } = req.body;
+    console.log(req.body)
+    // Create a PaymentIntent with the order amount and currency
+    const paymentIntent = await stripe.paymentIntents.create({
+        amount: calculateOrderAmount(items),
+        currency: "usd",
+        // In the latest version of the API, specifying the `automatic_payment_methods` parameter is optional because Stripe enables its functionality by default.
+        automatic_payment_methods: {
+            enabled: true,
+        },
+    });
+    console.log(paymentIntent.client_secret)
+    req.session.formData = formData;
+    req.session.cartProducts = cartProducts;
+    req.session.client_secret = paymentIntent.client_secret;
+    res.send({
+        clientSecret: paymentIntent.client_secret,
+    });
+});
+
 
 app.get("/api", (req, res) => {
     res.json({ "users": ["userOne", "UserTwo"] })
 })
 
-
-
-
-//   app.get("/", (req, res) => {
-//     res.sendFile(path.join(__dirname, "/public/index.html"));
+// app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "../client/build", "index.html"));
 // });
 
 // app.get("/", (req, res) => {
@@ -475,6 +498,7 @@ app.post('/api/update-cart', (req, res) => {
 
 });
 
+
 app.get("/api/get-login", (req, res) => {
     console.log(req.isAuthenticated())
     if (req.isAuthenticated()) {
@@ -488,7 +512,7 @@ app.post("/api/login", (req, res) => {
         username: req.body.username,
         password: req.body.password
     });
-    console.log(user)
+    // console.log(user)
     req.login(user, function (err) {
         if (err || user.username === '' || user.password === '') {
             console.log("login error " + err);
@@ -501,6 +525,7 @@ app.post("/api/login", (req, res) => {
                         wishList: foundUser.wishList,
                     };
                     // res.send(JSON.stringify(userData));
+                    // res.redirect("http://localhost:3000/");
                     res.redirect("https://varda-dolls.onrender.com");
                 })
             }).catch(err => {
@@ -516,6 +541,7 @@ app.post("/api/log-out", (req, res) => {
             console.log("logout error " + err);
         }
         // res.send('logged-out');
+        // res.redirect("http://localhost:3000/");
         res.redirect("https://varda-dolls.onrender.com");
     });
 });
@@ -529,6 +555,7 @@ app.post("/api/register", function (req, res) {
             };
             passport.authenticate("local")(req, res, function () {
                 res.send(JSON.stringify(userData));
+                // res.redirect("http://localhost:3000/");
                 res.redirect("https://varda-dolls.onrender.com");
             })
         })
@@ -548,6 +575,7 @@ app.post("/api/register", function (req, res) {
                         wishList: []
                     };
                     res.send(JSON.stringify(userData));
+                    // res.redirect("http://localhost:3000/");
                     res.redirect("https://varda-dolls.onrender.com");
                 })
             }
@@ -561,12 +589,13 @@ app.get("/api/get-user-data", (req, res) => {
     if (req.isAuthenticated()) {
         User.findById(req.user.id)
             .then((foundUser) => {
-                console.log(foundUser);
+                // console.log(foundUser);
                 res.send(foundUser);
 
             }).catch((err) => {
                 console.log(err);
                 console.log('error finding user):');
+                // res.redirect("http://localhost:3000/");
                 res.redirect("https://varda-dolls.onrender.com");
             });
     } else {
@@ -583,15 +612,16 @@ app.get("/auth/google/VardasDolls",
     passport.authenticate('google', { failureRedirect: "/", failureMessage: true }),
     function (req, res) {
         // Successful authentication, redirect to the homepage or a success page.
+        // res.redirect("http://localhost:3000/");
         res.redirect("https://varda-dolls.onrender.com");
     });
 
+const PORT = process.env.PORT || 5000;
 app.post("/", (req, res) => {
-    // res.sendFile(__dirname + "/index.html");
-    res.sendFile(path.join(__dirname, "index.html"));
+    res.sendFile(__dirname + "/index.html");
+    // res.sendFile(path.join(__dirname, "../client/build", "index.html"));
 })
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, "/public/index.html"));
-  });
-const PORT = process.env.PORT || 5000;
+});
 app.listen(PORT, () => { console.log("server started on port 5000") })

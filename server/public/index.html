@@ -1,1 +1,219 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="Web site created using create-react-app"/><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet"><title>Varda's Dolls</title><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script><link rel="apple-touch-icon" href="/logo192.png"/><link rel="manifest" href="/manifest.json"/><title>React App</title><script defer="defer" src="/static/js/main.36472cdb.js"></script><link href="/static/css/main.612a9f72.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
+<!doctype html>
+<html lang="he" dir="rtl">
+
+<head>
+  <meta charset="utf-8">
+  <title>Varda's Puppets</title>
+  <!-- css stylesheets -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+    rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+    crossorigin="anonymous">
+
+
+  <link rel="stylesheet" href="vardaweb.rtl.css">
+  <!-- bootstrap scrips -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- font awsome -->
+  <script src="https://kit.fontawesome.com/bc6cb35e9e.js" crossorigin="anonymous"></script>
+
+  <!-- google fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Ubuntu&display=swap" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">הבובות של ורדה</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">אודותינו</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">הבובות שלנו</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link">מארזים</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link">מבצעים</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link">צור קשר</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link">אייקון עגלת קניות</a>
+            </li>
+          </ul>
+          <form class="search-form d-flex" role="search">
+            <input class="search-area form-control me-2" type="search" placeholder="חפש באתר" aria-label="Search">
+            <button id="nav-button" class="btn btn-outline-light" type="submit">חפש</button>
+          </form>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+
+  <section id="home">
+
+    <div class="">
+      <div class="img-container">
+        <img class="about-img" src="./images/homeimage.png">
+      </div>
+
+  </section>
+
+  <hr>
+
+  <section id="features">
+    <h1>למה לקנות מאיתנו ?</h1>
+    <div class="row">
+      <div class="col-lg-4 col-md-12 feature-box">
+        <i class="fa-solid fa-circle-check features-icons"></i>
+        <h3 class="features-headings">Easy to use.</h3>
+        <p class="features-texts">So easy to use, even your dog could do it.</p>
+      </div>
+      <div class="col-lg-4 col-md-12 feature-box">
+        <i class="fa-solid fa-bullseye features-icons"></i>
+        <h3 class="features-headings">Elite Clientele</h3>
+        <p class="features-texts">We have all the dogs, the greatest dogs.</p>
+      </div>
+      <div class="col-lg-4 col-md-12 feature-box">
+        <i class="fa-solid fa-heart features-icons"></i>
+        <h3 class="features-headings">Guaranteed to work.</h3>
+        <p class="features-texts">Find the love of your dog's life or your money back.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr>
+
+  <section id="gallery">
+    <div>
+      <h1>הגלריה שלנו</h1>
+    </div>
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true"
+          aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="container">
+            <div class="carousel-caption text-start">
+              <img class="gallery-image" src="./images/monkeys.JPG">
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Another example headline.</h1>
+              <p>Some representative placeholder content for the second slide of the carousel.</p>
+              <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="container">
+            <div class="carousel-caption text-end">
+              <h1>One more for good measure.</h1>
+              <p>Some representative placeholder content for the third slide of this carousel.</p>
+              <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </section>
+
+  <hr>
+
+  <h1>המארזים שלנו</h1>
+  <section id="packages">
+
+    <div class="row">
+      <div class="packages-column col-lg-4 col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h3>Chihuahua</h3>
+          </div>
+          <div class="card-body">
+            <h2 class="price-text">Free</h2>
+            <p>5 Matches Per Day</p>
+            <p>10 Messages Per Day</p>
+            <p>Unlimited App Usage</p>
+            <button id="packag-buttons" type="button" class="btn btn-lg btn-outline-light">Sign Up</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="packages-column col-lg-4 col-md-6">
+        <div class="card">
+          <div class="card-header">
+            <h3>Labrador</h3>
+          </div>
+          <div class="card-body">
+            <h2 class="price-text">$49 / mo</h2>
+            <p>Unlimited Matches</p>
+            <p>Unlimited Messages</p>
+            <p>Unlimited App Usage</p>
+            <button id="packag-buttons" type="button" class="btn btn-lg btn-outline-light">Sign Up</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="packages-column col-lg-4">
+        <div class="card">
+          <div class="card-header">
+            <h3>Mastiff</h3>
+          </div>
+          <div class="card-body">
+            <h2>$99 / mo</h2>
+            <p>Pirority Listing</p>
+            <p>Unlimited Matches</p>
+            <p>Unlimited Messages</p>
+            <p>Unlimited App Usage</p>
+            <button id="packag-buttons" type="button" class="btn btn-lg btn-outline-light">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="about">
+
+    <div class="row">
+      <div class="img-container col-lg-6 col-md-12">
+        <img class="about-img" src="./images/homeimage.png">
+      </div>
+      <div class="abouttext-container col-lg-6 col-md-12">
+        <h1 class="about-heading">אודות אמא ויצירת הבובות.</h1>
+      </div>
+    </div>
+
+  </section>
+</body>
+
+</html>
