@@ -618,7 +618,7 @@ app.get("/auth/google/VardasDolls",
 
 const PORT = process.env.PORT || 5000;
 app.post("/", (req, res) => {
-    res.sendFile(__dirname + "/index.html");
+    res.sendFile(path.join(__dirname, "index.html"));
     // res.sendFile(path.join(__dirname, "../client/build", "index.html"));
 })
 app.get('*', (req, res) => {
