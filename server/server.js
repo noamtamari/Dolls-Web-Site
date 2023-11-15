@@ -622,6 +622,8 @@ app.post("/", (req, res) => {
     // res.sendFile(path.join(__dirname, "../client/build", "index.html"));
 })
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, "/public/index.html"));
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, "/public/static/index.html"));
+    });
 });
 app.listen(PORT, () => { console.log("server started on port 5000") })
