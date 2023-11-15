@@ -29,8 +29,9 @@ app.set("view engine", "ejs"); //use EJS as its view engine
 app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static(__dirname + "/public"));
-// app.use(express.static(path.join(__dirname, "../client/build")));
+// app.use(express.static(__dirname + "/public"));
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use(cookieParser());
 
