@@ -12,7 +12,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const findOrCreate = require('mongoose-findorcreate');
 var cors = require('cors');
 const { v4: uuidv4 } = require('uuid');
-const stripe = require("stripe")('sk_test_51O9QSFCM6LfZFndAWwPImLpKNBnoX77EulStkgBxtK8BSpM2EhPBI4QClBwLeoiae57GsRuUHDuJvZTiPxUdR0xn00WXrdMhPV');
+const stripe = require("stripe")(process.env.STRIPE_API_KEY);
 
 
 const checkOutRoute = require('./checkOutRoute');
