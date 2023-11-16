@@ -12,7 +12,7 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const findOrCreate = require('mongoose-findorcreate');
 var cors = require('cors');
 const { v4: uuidv4 } = require('uuid');
-const stripe = require("stripe")(process.env.STRIPE_API_KEY);
+const stripe = require("stripe")(process.enx);
 
 
 const checkOutRoute = require('./checkOutRoute');
@@ -30,7 +30,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 // app.use(express.static(__dirname + "/public"));
-app.use(express.static(path.join(__dirname, 'public/static')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use(cookieParser());
@@ -622,8 +622,8 @@ app.post("/", (req, res) => {
     res.sendFile(path.join(__dirname, "index.html"));
     // res.sendFile(path.join(__dirname, "../client/build", "index.html"));
 })
-app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+app.get('*', (req, res) => {
+            res.sendFile(path.join(__dirname, "/public/static/index.html"));
+    });
 
 app.listen(PORT, () => { console.log("server started on port 5000") })
