@@ -16,7 +16,7 @@ function RegisterFrame({ handleRegisterChange }) {
     const [registerError, setRegisterError] = useState(false);
 
     function handleSubmit(event) {
-        console.log("Registering")
+        console.log("Registering new Version")
         setLoading(true);
         event.preventDefault();
         const registerData = {
