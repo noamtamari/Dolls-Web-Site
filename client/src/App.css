@@ -1,0 +1,88 @@
+
+#primary-font {
+  font-family: 'Secular One', sans-serif;
+}
+#app-nav-button:hover{
+background-color: #A684D9;
+}
+
+hr {
+  border: none;
+  text-align: center;
+}
+
+hr:after {
+  /* content: '∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿∿'; */
+  /* Ratio -> font-size/letter-spacing = 6.25 */
+  letter-spacing: -9.6px;
+  font-size: 60px;
+  color: #A684D9;
+
+}
+
+
+/* CSS */
+.button-category {
+  background-image: linear-gradient(92.88deg, #455EB5 9.16%, #5643CC 43.89%, #673FD7 64.72%);
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-size: 16px;
+  font-weight: 700;
+  height: 3rem;
+  width: 30%;
+  padding: 0 1.6rem;
+  text-align: center;
+  text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+  transition: all .5s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  font-family: 'Secular One', sans-serif;
+  /* margin: 2% auto; */
+}
+
+.button-category:hover {
+  box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
+  transition-duration: .1s;
+  background-image:none;
+  color:#946bd2;
+  margin: auto;
+  
+}
+
+@media (min-width: 768px) {
+  .button-category {
+    padding: 0 2.6rem;
+  }
+}
+
+/* Carousel section */
+
+#testimonials {
+  background-color: #ef8172;
+  color: white;
+}
+
+.testimonial-img {
+  width: 10%;
+  border-radius: 100%;
+  margin: 20px;
+}
+
+#press {
+  background-color: #ef8172;
+  padding-bottom: 3%;
+}
+
+.press-logo {
+  width: 15%;
+  margin: 20px 20px 50px;
+}
+
+.carousel-item {
+  padding: 7% 15%;
+}

@@ -1,0 +1,29 @@
+/* CustomImageList.css */
+.custom-image-list {
+    border: 5px solid #ada3bd;
+    border-radius: 5px;
+}
+
+/* Target the scrollbar */
+.custom-image-list::-webkit-scrollbar {
+    width: 12px;
+    /* Width of the scrollbar */
+    background-color: #7e57c2;
+    /* Background color of the scrollbar */
+}
+
+/* Target the scrollbar thumb */
+.custom-image-list::-webkit-scrollbar-thumb {
+    background-color: #9575cd;
+    /* Color of the scrollbar thumb */
+}
+
+/* Target the scrollbar track */
+.custom-image-list::-webkit-scrollbar-track {
+    background-color: #d1c4e9;
+    /* Color of the scrollbar track */
+}
+
+.primary-font {
+    font-family: 'Secular One', sans-serif;
+  }
