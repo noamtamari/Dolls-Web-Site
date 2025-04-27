@@ -548,6 +548,7 @@ app.post("/api/log-out", (req, res) => {
 });
 
 app.post("/api/register", function (req, res) {
+    console.log("Registerin new Web version")
     if (req.isAuthenticated()) {
         User.findById(req.user.id).then(foundUser => {
             var userData = {
