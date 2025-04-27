@@ -94,38 +94,37 @@ passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
     clientSecret: process.env.CLIENT_SECRET,
     // callbackURL: "/auth/google/VardasDolls",
-    callbackURL: "https://varda-dolls.onrender.com/auth/google/VardasDolls" || "http://localhost:5000/auth/google/VardasDolls",
+    callbackURL: "https://varda-dolls.onrender.com/auth/google/VardasDolls",
     scope: ['profile', 'email']
-},function (accessToken, refreshToken, profile, cb) {
-    // Try to find an existing user by Google ID or email
-    User.findOne({ $or: [{ googleId: profile.id }, { email: profile.emails[0].value }] }, function (err, user) {
-        if (err) {
-            console.error("Error finding user:", err);
-            return cb(err);
+},
+async (accessToken, refreshToken, profile, cb) => {
+    try {
+        // Look for an existing user
+        let user = await User.findOne({ googleId: profile.id });
+
+        // If no user found by googleId, try by email
+        if (!user && profile.emails && profile.emails.length) {
+            user = await User.findOne({ email: profile.emails[0].value });
         }
 
-        if (user) {
-            // If the user exists, log them in
-            return cb(null, user);
-        } else {
-            // If the user doesn't exist, create a new one
-            const newUser = new User({
+        // If no user found, create one
+        if (!user) {
+            user = new User({
                 googleId: profile.id,
                 displayName: profile.displayName,
-                email: profile.emails[0].value,
-                // Optionally, add other data from profile (like image or name)
+                email: profile.emails[0].value
             });
-
-            // Save the new user
-            newUser.save(function (err) {
-                if (err) return cb(err);
-
-                // After saving, log them in
-                return cb(null, newUser);
-            });
+            await user.save();
         }
-    });
-}));
+
+        // Log them in (success)
+        return cb(null, user);
+    } catch (err) {
+        // Handle errors
+        return cb(err);
+    }
+}
+));
 
 const guestSchema = new mongoose.Schema({
     identifier: String,
