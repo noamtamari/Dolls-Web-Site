@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 // app.use(express.static(__dirname + "/public"));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
 
 
 
@@ -625,12 +625,14 @@ app.get("/auth/google/VardasDolls",
 
 const PORT = process.env.PORT || 5000;
 app.post("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "index.html"));
+    // res.sendFile(path.join(__dirname, "index.html"));
+    res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
     // res.sendFile(path.join(__dirname, "../client/build", "index.html"));
 })
 app.get('*', (req, res) => {
     // res.sendFile(path.join(__dirname, 'public', 'index.html'));
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+    // res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+    res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'));
 });
 
 app.listen(PORT, () => { console.log("server started on port 5000") })
