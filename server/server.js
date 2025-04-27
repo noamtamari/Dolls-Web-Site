@@ -564,21 +564,24 @@ app.post("/api/register", function (req, res) {
         User.register({ username: req.body.username }, req.body.password, function (err, user) {
             // console.log(res);
             if (err) {
-                console.log("Register Error" + err);
-                res.send('error');
+                console.log("Register Error: " + err);
+                res.status(400).send("Registration error");
             } else {
-                console.log("Register : " + req.body.username)
+                console.log("Register: " + req.body.username);
 
-                passport.authenticate("local", { failureRedirect: '/', failureMessage: true }, function (req, res) {
-                    console.log("Register succsuflly");
-                    var userData = {
-                        cartList: [],
-                        wishList: []
-                    };
-                    res.send(JSON.stringify(userData));
-                    // res.redirect("http://localhost:3000/");
-                    res.redirect("https://varda-dolls.onrender.com");
-                })
+                passport.authenticate("local", function (err, user, info) {
+                    if (err) {
+                        console.error("Authentication error:", err);
+                        res.status(500).send("Authentication error");
+                    } else {
+                        console.log("Register successfully");
+                        var userData = {
+                            cartList: [],
+                            wishList: []
+                        };
+                        res.json(userData); // Send JSON response to the client
+                    }
+                })(req, res);
             }
         })
     }
