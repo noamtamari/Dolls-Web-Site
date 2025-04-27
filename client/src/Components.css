@@ -432,6 +432,12 @@
   /* Replace with your preferred background color */
 }
 
+.incorrect-pass{
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 2%;
+}
+
 #un-register-link {
   background-color: transparent;
   border: none;
