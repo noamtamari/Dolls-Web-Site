@@ -10,11 +10,12 @@ password: String,
     cartList: Array,
     orders: Array,
     googleId: String,
-    displayName: String 
+    displayName: String ,
+    email: String 
 });
 
 // Apply the plugins to the schema
-userSchema.plugin(passportLocalMongoose);
+userSchema.plugin(passportLocalMongoose, { usernameUnique: false });
 userSchema.plugin(findOrCreate);
 
 const User = mongoose.model('User', userSchema);
