@@ -17,7 +17,7 @@ const dolls = [
                     },
                     {
                         name: "בובת ארנב",
-                        ImgsSRC: "/images/rubbit1.JPG",
+                        ImgsSRC: "/images/rubbit1.jpg",
                         color: "",
                         size: ["S", "M", "L"],
                         price: [60, 80, 100],
@@ -117,7 +117,7 @@ const dolls = [
                     },
                     {
                         name: "רעשן לבת 2",
-                        ImgsSRC: "/images/rubbit1.JPG",
+                        ImgsSRC: "/images/rubbit1.jpg",
                         color: "",
                         size: ["S", "M", "L"],
                         price: [60, 80, 100],
@@ -143,7 +143,7 @@ const dolls = [
                     },
                     {
                         name: "רעשן לבן 2",
-                        ImgsSRC: "/images/noiser.JPG",
+                        ImgsSRC: "/images/noiser.jpg",
                         color: "",
                         size: ["S", "M", "L"],
                         price: [60, 80, 100],
@@ -173,7 +173,7 @@ const dolls = [
                     },
                     {
                         name: "מחזיק מוצץ לבת 2",
-                        ImgsSRC: "/images/noiser.JPG",
+                        ImgsSRC: "/images/noiser.jpg",
                         color: "",
                         size: ["S", "M", "L"],
                         price: [60, 80, 100],
@@ -197,7 +197,7 @@ const dolls = [
                     },
                     {
                         name: "מחזיק מוצץ לבן 2",
-                        ImgsSRC: "/images/noiser.JPG",
+                        ImgsSRC: "/images/noiser.jpg",
                         color: "",
                         size: ["S", "M", "L"],
                         price: [60, 80, 100],
@@ -229,7 +229,7 @@ const dolls = [
                     },
                     {
                         name: "נוי לחדר בנות 2",
-                        ImgsSRC: "/images/noiser.JPG",
+                        ImgsSRC: "/images/noiser.jpg",
                         color: "",
                         size: ["S", "M", "L"],
                         price: [60, 80, 100],
@@ -255,7 +255,7 @@ const dolls = [
                     },
                     {
                         name: "נוי לחדר בנים",
-                        ImgsSRC: "/images/noiser.JPG",
+                        ImgsSRC: "/images/noiser.jpg",
                         color: "",
                         size: ["S", "M", "L"],
                         price: [60, 80, 100],
@@ -287,7 +287,7 @@ const dolls = [
                     },
                     {
                         name: "מארז מתנה לתינוקת 2",
-                        ImgsSRC: "/images/noiser.JPG",
+                        ImgsSRC: "/images/noiser.jpg",
                         color: "",
                         size: ["S", "M", "L"],
                         price: [60, 80, 100],
@@ -311,7 +311,7 @@ const dolls = [
                     },
                     {
                         name: "מארז מתנה לתינוק 2",
-                        ImgsSRC: "/images/noiser.JPG",
+                        ImgsSRC: "/images/noiser.jpg",
                         color: "",
                         size: ["S", "M", "L"],
                         price: [60, 80, 100],
