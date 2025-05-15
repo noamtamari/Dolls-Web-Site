@@ -22,6 +22,7 @@ const session = require("express-session"); // Import express-session for sessio
 const cookieParser = require("cookie-parser"); // Import cookie-parser for parsing cookies
 const MongoDBStore = require("connect-mongodb-session")(session); // Import MongoDBStore for storing session data in MongoDB
 // const passportLocalMongoose = require('passport-local-mongoose'); // Import passport-local-mongoose for local authentication
+const passport = require('passport'); // Import Passport.js for user authentication
 const GoogleStrategy = require("passport-google-oauth20").Strategy; // Import Google OAuth strategy for Passport.js
 // const findOrCreate = require('mongoose-findorcreate'); // Import mongoose-findorcreate for simplifying user lookup or creation
 var cors = require("cors"); // Import CORS middleware for handling Cross-Origin Resource Sharing
