@@ -1,4 +1,3 @@
-
 #primary-font {
   font-family: 'Secular One', sans-serif;
 }
@@ -21,7 +20,7 @@ hr:after {
 }
 
 
-/* CSS */
+/* General button styles */
 .button-category {
   background-image: linear-gradient(92.88deg, #455EB5 9.16%, #5643CC 43.89%, #673FD7 64.72%);
   border-radius: 8px;
@@ -30,19 +29,38 @@ hr:after {
   color: #FFFFFF;
   cursor: pointer;
   flex-shrink: 0;
-  font-size: 16px;
   font-weight: 700;
-  height: 3rem;
-  width: 30%;
-  padding: 0 1.6rem;
+  padding: 0.8rem 1.6rem; /* Use padding instead of fixed width/height */
   text-align: center;
   text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
-  transition: all .5s;
+  transition: all 0.5s;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   font-family: 'Secular One', sans-serif;
-  /* margin: 2% auto; */
+  width: auto; /* Allow the button to adjust based on content */
+  max-width: 80%; /* Limit the button width on larger screens */
+  min-width: 150px; /* Ensure a consistent minimum width */
+  white-space: nowrap; /* Prevent text wrapping */
+  margin: 2% auto; /* Center the button */
+}
+
+/* Medium screens (tablets) */
+@media (max-width: 768px) {
+  .button-category {
+    font-size: 0.9rem; /* Slightly smaller font size for medium screens */
+    padding: 0.8rem 1.5rem; /* Adjust padding */
+    min-width: 120px; /* Adjust minimum width */
+  }
+}
+
+/* Small screens (phones) */
+@media (max-width: 480px) {
+  .button-category {
+    font-size: 0.8rem; /* Smaller font size for small screens */
+    padding: 0.6rem 1.2rem; /* Adjust padding */
+    min-width: 100px; /* Adjust minimum width */
+  }
 }
 
 .button-category:hover {
@@ -54,11 +72,7 @@ hr:after {
   
 }
 
-@media (min-width: 768px) {
-  .button-category {
-    padding: 0 2.6rem;
-  }
-}
+
 
 /* Carousel section */
 

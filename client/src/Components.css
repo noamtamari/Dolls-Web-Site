@@ -2,6 +2,13 @@
   font-family: 'Secular One', sans-serif;
 }
 
+.custom-carousel .carousel-indicators {
+  margin-bottom: 7%; /* Center the indicators horizontally */
+  width: 70%; /* Match the width of the image and caption */
+  display: flex; /* Ensure proper alignment */
+  justify-content: center; /* Center-align the indicators */
+}
+
 .custom-carousel .carousel-indicators li {
   background-color: purple;
   /* Set the indicator color */
@@ -18,6 +25,25 @@
   /* Set the caption background color */
   color: white;
   /* Set the caption text color */
+}
+
+.carousel-content {
+  width: 50%; /* Set the width for both the image and caption */
+  margin: 0 auto; /* Center the container horizontally */
+  text-align: center; /* Center-align the content */
+}
+
+.carousel-image {
+  width: 100%; /* Make the image take the full width of the container */
+  height: 80%; /* Set the height to 80% of the container */
+  height: auto; /* Maintain the aspect ratio */
+  display: block; /* Ensure the image is treated as a block element */
+}
+
+.custom-caption {
+  width: 100%; /* Match the width of the container */
+  text-align: center; /* Center-align the text */
+  padding: 1rem; /* Add padding for spacing */
 }
 
 /* FOOTER */
@@ -587,3 +613,35 @@
     transform: rotate(360deg);
   }
 }
+
+/* Default layout for larger screens */
+.counter-cart-div {
+  display: flex;
+  align-items: center; /* Vertically center the elements */
+  justify-content: center; /* Horizontally center the elements */
+  gap: 0.5rem; /* Add spacing between elements */
+}
+
+/* Layout for smaller screens */
+@media (max-width: 768px) {
+  .counter-cart-div {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center-align elements horizontally */
+    justify-content: center; /* Center-align elements vertically */
+    width: 100%; /* Ensure the container takes full width */
+    text-align: center; /* Center-align the text */
+  }
+
+  .button-cart {
+    width: 40px; /* Adjust button width for smaller screens */
+    height: 30px; /* Adjust button height for smaller screens */
+    border-radius: 5px; /* Add subtle rounded corners */
+  }
+
+  .input-cart {
+    width: 50px; /* Adjust input width for smaller screens */
+    text-align: center; /* Center-align the text in the input */
+  }
+}
+

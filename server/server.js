@@ -511,6 +511,7 @@ app.post("/api/update-cart", (req, res) => {
       .then((foundUser) => {
         if (foundUser) {
           foundUser.cartList = newCartList;
+          res.sendStatus(200);
           return foundUser.save();
         }
       })

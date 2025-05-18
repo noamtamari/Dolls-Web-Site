@@ -57,7 +57,7 @@ const router = createBrowserRouter([
   }, {
     path: "/Cart",
     element: (
-      <Suspense fallback={<div>Loading Cart List Page...</div>}>
+      <Suspense>
         <LazyCartPage />
       </Suspense>
     ),
